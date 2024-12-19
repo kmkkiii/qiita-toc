@@ -1,8 +1,8 @@
 {
   "name": "qiita-toc",
-  "displayName": "Qiita toc",
-  "version": "0.0.1",
-  "description": "A basic Plasmo extension.",
+  "displayName": "Qiita TOC",
+  "version": "0.0.2",
+  "description": "A browser extension that enables users to view the table of contents on Qiita articles even on mobile devices.",
   "author": "kmkkiii",
   "scripts": {
     "dev": "plasmo dev",
@@ -12,20 +12,27 @@
   "dependencies": {
     "plasmo": "0.89.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tocbot": "^4.32.2"
   },
   "devDependencies": {
+    "@egoist/tailwindcss-icons": "^1.8.1",
     "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@iconify-json/material-symbols": "^1.2.10",
     "@types/chrome": "0.0.258",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
     "prettier": "3.2.4",
+    "tailwindcss": "^3.4.16",
     "typescript": "5.3.3"
   },
   "manifest": {
-    "host_permissions": [
-      "https://*/*"
-    ]
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    }
   }
 }
