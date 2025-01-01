@@ -1,7 +1,7 @@
 {
   "name": "qiita-toc",
   "displayName": "Qiita TOC",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A browser extension that enables users to view the table of contents on Qiita articles even on mobile devices.",
   "author": "kmkkiii",
   "scripts": {

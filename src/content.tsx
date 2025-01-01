@@ -28,13 +28,27 @@ export const getRootContainer = () =>
     }, 1000)
   })
 
+const makeIds = () => {
+  const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6")
+  const headingMap = {}
+
+  headings.forEach((heading) => {
+    let id = heading.id
+      ? heading.id
+      : encodeURIComponent(heading.textContent.trim().toLowerCase())
+    headingMap[id] = !isNaN(headingMap[id]) ? ++headingMap[id] : 0
+    if (headingMap[id]) {
+      heading.id = id + "-" + headingMap[id]
+    } else {
+      heading.id = id
+    }
+  })
+}
+
 const TOCButton = () => {
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6")
-  headings.forEach((heading) => {
-    heading.id = encodeURIComponent(heading.textContent)
-  })
+  makeIds()
 
   const contentContainer = document.querySelector(
     "#personal-public-article-body > .mdContent-inner"
@@ -47,7 +61,8 @@ const TOCButton = () => {
       contentSelector: "#content-container",
       headingSelector: "h1, h2, h3, h4, h5, h6",
       collapseDepth: 6,
-      orderedList: false
+      orderedList: false,
+      scrollSmooth: false
     })
     return () => tocbot.destroy()
   }, [])
@@ -69,6 +84,13 @@ const TOCButton = () => {
           />
         </svg>
       </button>
+
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-0 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
       <div
         className="z-50 absolute bottom-16 right-6 p-2 max-w-[320px] rounded-lg max-h-[300px] overflow-y-auto "
@@ -100,7 +122,7 @@ const TOCButton = () => {
           </svg>
           ページトップへ
         </button>
-        <p className="font-bold py-1">目次</p>
+        <p className="font-bold">目次</p>
         <nav className="toc" />
       </div>
     </div>

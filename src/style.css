@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.toc-list-item {
+  padding-top: 0.75rem;
+}
