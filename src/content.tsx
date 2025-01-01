@@ -28,13 +28,27 @@ export const getRootContainer = () =>
     }, 1000)
   })
 
+const makeIds = () => {
+  const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6")
+  const headingMap = {}
+
+  headings.forEach((heading) => {
+    let id = heading.id
+      ? heading.id
+      : encodeURIComponent(heading.textContent.trim().toLowerCase())
+    headingMap[id] = !isNaN(headingMap[id]) ? ++headingMap[id] : 0
+    if (headingMap[id]) {
+      heading.id = id + "-" + headingMap[id]
+    } else {
+      heading.id = id
+    }
+  })
+}
+
 const TOCButton = () => {
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6")
-  headings.forEach((heading) => {
-    heading.id = encodeURIComponent(heading.textContent)
-  })
+  makeIds()
 
   const contentContainer = document.querySelector(
     "#personal-public-article-body > .mdContent-inner"
