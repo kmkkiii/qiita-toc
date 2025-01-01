@@ -84,6 +84,13 @@ const TOCButton = () => {
         </svg>
       </button>
 
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-0 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
       <div
         className="z-50 absolute bottom-16 right-6 p-2 max-w-[320px] rounded-lg max-h-[300px] overflow-y-auto "
         style={{
