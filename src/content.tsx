@@ -61,7 +61,8 @@ const TOCButton = () => {
       contentSelector: "#content-container",
       headingSelector: "h1, h2, h3, h4, h5, h6",
       collapseDepth: 6,
-      orderedList: false
+      orderedList: false,
+      scrollSmooth: false
     })
     return () => tocbot.destroy()
   }, [])
@@ -121,7 +122,7 @@ const TOCButton = () => {
           </svg>
           ページトップへ
         </button>
-        <p className="font-bold py-1">目次</p>
+        <p className="font-bold">目次</p>
         <nav className="toc" />
       </div>
     </div>
